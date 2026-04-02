@@ -7,6 +7,7 @@ Builder.load_file('view.kv')
 
 class TipCalculator(BoxLayout):
     bill_input = StringProperty()
+    people_input = StringProperty("1")
     tip_output = StringProperty()
     
     __model: TipModel
@@ -19,9 +20,10 @@ class TipCalculator(BoxLayout):
         try:
             self.__model.bill_amount = float(self.bill_input)
             self.__model.tip_percent = float(tip_percent)
-            
-            self.tip_output = f"Tip Amount: ${self.__model.tip_amount:.2f}"
+            self.__model.num_people = int(self.people_input) 
+
+            self.tip_output = f"Each Pays: ${self.__model.total_per_person:.2f}"
 
         except ValueError as ex:
-            print("error")
-        
+            self.tip_output = "Invalid Input!"
+            print(f"Error: {ex}")
