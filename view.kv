@@ -2,15 +2,24 @@
 
 <TipCalculator>:
     orientation: 'vertical'
-    spacing: 25
+    spacing: 15
     padding: 20
 
     Label:
-        text: 'Enter your bill amount below: '
-
+        text: 'Enter your bill amount below:'
     TextInput:
         hint_text: "$"
+        multiline: False
         on_text: root.bill_input = self.text
+
+    # --- NEW SECTION START ---
+    Label:
+        text: 'Number of people splitting:'
+    TextInput:
+        text: '1'
+        multiline: False
+        on_text: root.people_input = self.text
+    # --- NEW SECTION END ---
 
     Label:
         text: root.tip_output
@@ -26,4 +35,3 @@
     Button:
         text: 'Calculate 25% Tip'
         on_release: root.btn_click_calc_tip(25)
-
